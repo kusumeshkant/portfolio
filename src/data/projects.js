@@ -39,8 +39,8 @@ export const PROJECTS = [
     tagline: 'Trainer certification web platform',
     domain: 'Sports & Education',
     description:
-      'Web platform for training and certifying pickleball trainers. Features video-based course delivery, interactive assessments, and official certification issuance. Built with React.js and Redux for predictable state management.',
-    tech: ['React.js', 'Redux', 'Node.js', 'Firebase', 'Google Maps'],
+      'Platform for training and certifying pickleball trainers. Features video-based course delivery, interactive assessments, and official certification issuance. Built with Flutter and GetX for smooth cross-platform performance.',
+    tech: ['Flutter', 'GetX', 'Node.js', 'Firebase', 'Google Maps'],
     color: '#8B5CF6',
     featured: true,
     links: {

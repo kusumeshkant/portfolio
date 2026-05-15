@@ -23,8 +23,8 @@ export const EXPERIENCES = [
     role: 'Sr. Software Developer',
     domain: 'Health & Sports',
     description:
-      'Led Flutter development for 150+ Health (Play Store) — a fitness tracking app with smartwatch integration for Google Fit and Apple HealthKit. Built Node.js/Express.js backend for workout analytics and developed the React.js frontend for RacketPro, a trainer certification web platform.',
-    tech: ['Flutter', 'Node.js', 'React.js', 'Redux', 'Firebase', 'Google Fit', 'Apple HealthKit'],
+      'Led Flutter development for 150+ Health (Play Store) — a fitness tracking app with smartwatch integration for Google Fit and Apple HealthKit. Built Node.js/Express.js backend for workout analytics and developed the Flutter frontend for RacketPro, a trainer certification platform.',
+    tech: ['Flutter', 'GetX', 'Node.js', 'Firebase', 'Google Fit', 'Apple HealthKit'],
     highlight: 'Smartwatch sync — iOS & Android',
   },
   {
