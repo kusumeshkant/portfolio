@@ -1,12 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="12" fill="#080B14"/>
-  <text x="50%" y="52%" dominant-baseline="central" text-anchor="middle"
-        font-family="Syne, sans-serif" font-weight="800" font-size="26"
-        fill="url(#grad)">KS</text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <clipPath id="c">
+      <circle cx="32" cy="32" r="30"/>
+    </clipPath>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4FC3F7"/>
       <stop offset="100%" stop-color="#8B5CF6"/>
     </linearGradient>
   </defs>
+
+  <!-- Dark background circle -->
+  <circle cx="32" cy="32" r="32" fill="#080B14"/>
+
+  <!--
+    Photo clipped to circle.
+    The photo is portrait (~700×1400). Face is at ~15% from top.
+    We scale the image so width=64, height=128 (2× to fill vertically),
+    then shift y by -6px so the face (at 15% ≈ y=19 of 128) lands near centre.
+  -->
+  <image
+    href="/me.jpeg"
+    x="0" y="-6"
+    width="64" height="128"
+    preserveAspectRatio="xMidYMin slice"
+    clip-path="url(#c)"
+  />
+
+  <!-- Gradient ring border -->
+  <circle cx="32" cy="32" r="30" fill="none" stroke="url(#g)" stroke-width="2" opacity="0.7"/>
 </svg>
