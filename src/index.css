@@ -1,0 +1,241 @@
+/*
+ * Global Stylesheet
+ * Architecture: Tailwind base → custom properties → layout → utilities
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom CSS properties (design tokens) ──────────────────────────── */
+:root {
+  --bg: #080B14;
+  --bg-surface: #0D1117;
+  --bg-raised: #131C2E;
+  --sky: #4FC3F7;
+  --violet: #8B5CF6;
+  --ink-primary: #F0F6FC;
+  --ink-secondary: #C9D1D9;
+  --ink-muted: #7D8590;
+  --glass-bg: rgba(13, 17, 23, 0.7);
+  --glass-border: rgba(100, 180, 255, 0.07);
+  --glass-border-glow: rgba(79, 195, 247, 0.25);
+}
+
+/* ─── Base reset & smooth rendering ─────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  /* Dot grid layered on the solid background — the Linear/Vercel effect */
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, rgba(100, 180, 255, 0.09) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+  /* Antialiasing for crisp text on dark backgrounds */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Hide default cursor — we use a custom one */
+  cursor: none;
+}
+
+/* Restore cursor on mobile where custom cursor doesn't make sense */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* ─── Selection colour ───────────────────────────────────────────────── */
+::selection {
+  background: rgba(79, 195, 247, 0.25);
+  color: #F0F6FC;
+}
+
+/* ─── Scrollbar styling ──────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 195, 247, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 195, 247, 0.5);
+}
+
+/* ─── Typography base ───────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  color: var(--ink-primary);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--ink-secondary);
+}
+
+code, pre, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─── Glassmorphism utility classes ─────────────────────────────────── */
+@layer components {
+
+  /* Core glass card — the building block of the UI */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+  }
+
+  /* Glowing variant — used for featured/highlighted items */
+  .glass-card-glow {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass-card-glow:hover {
+    border-color: rgba(79, 195, 247, 0.2);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(79, 195, 247, 0.12),
+                0 0 40px rgba(79, 195, 247, 0.06);
+  }
+
+  /* Gradient text — used for headings and key words */
+  .gradient-text {
+    background: linear-gradient(135deg, #4FC3F7 0%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Sky-only gradient text */
+  .gradient-text-sky {
+    background: linear-gradient(135deg, #4FC3F7 0%, #81D4FA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section container — consistent horizontal padding */
+  .section-container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* Glow dot decoration — decorative circles used across sections */
+  .glow-dot {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  /* Tag / badge pill */
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    background: rgba(79, 195, 247, 0.08);
+    border: 1px solid rgba(79, 195, 247, 0.15);
+    color: #4FC3F7;
+    white-space: nowrap;
+  }
+}
+
+/* ─── Noise texture overlay ─────────────────────────────────────────── */
+/*
+ * A subtle grain effect over the whole page gives depth and prevents
+ * the flat, "printed" look of pure solid dark backgrounds.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Cinematic scan line ───────────────────────────────────────────── */
+/*
+ * A single translucent line that drifts down the page.
+ * Evokes an old monitor feel — subtle enough to read past.
+ */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.12), transparent);
+  animation: scan-line 12s linear infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ─── Dot grid background ───────────────────────────────────────────── */
+/*
+ * The "dot grid" is the signature premium SaaS background (Linear, Vercel).
+ * Layered on body using background-image alongside background-color.
+ * The dot is ~1px and very faint — depth without noise.
+ */
+
+/* ─── Focus ring (accessibility) ────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(79, 195, 247, 0.6);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Canvas elements (Three.js) ────────────────────────────────────── */
+canvas {
+  display: block;
+}
+
+/* ─── Smooth section transitions ────────────────────────────────────── */
+section {
+  position: relative;
+}
+
+/* ─── Link base ─────────────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Input base ────────────────────────────────────────────────────── */
+input, textarea {
+  font-family: 'Outfit', sans-serif;
+}

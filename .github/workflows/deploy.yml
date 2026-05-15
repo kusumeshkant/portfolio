@@ -1,0 +1,144 @@
+# CI/CD — Kusumeshkant Sharma Portfolio
+# ═══════════════════════════════════════
+#
+# BRANCH STRATEGY
+# ───────────────
+#  main     → Production  → kusumeshkant.dqstore.in
+#  develop  → Preview     → <hash>-kusumeshkant-portfolio.pages.dev
+#  feature/ → No deploy   → Build validation only
+#
+# REQUIRED GITHUB SECRETS  (Settings → Secrets → Actions)
+# ─────────────────────────────────────────────────────────
+#  CLOUDFLARE_API_TOKEN   — dash.cloudflare.com/profile/api-tokens
+#                           Use template: "Cloudflare Pages: Edit"
+#  CLOUDFLARE_ACCOUNT_ID  — Cloudflare dashboard → right sidebar
+
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Job 1: Validate (runs on every push and PR) ─────────────────────
+  validate:
+    name: Build Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Check dist output
+        run: |
+          echo "=== Build artifacts ==="
+          ls -lh dist/
+          echo "=== Asset sizes ==="
+          du -sh dist/assets/*.js 2>/dev/null || true
+          echo "=== Build complete ==="
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ github.sha }}
+          path: dist/
+          retention-days: 1
+
+  # ── Job 2: Deploy to Production (main branch only) ──────────────────
+  deploy-production:
+    name: Deploy → Production
+    runs-on: ubuntu-latest
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://kusumeshkant.dqstore.in
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for production
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy to Cloudflare Pages (Production)
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: kusumeshkant-portfolio
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+  # ── Job 3: Deploy Preview (develop branch only) ─────────────────────
+  deploy-preview:
+    name: Deploy → Preview
+    runs-on: ubuntu-latest
+    needs: validate
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    environment:
+      name: preview
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy to Cloudflare Pages (Preview)
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: kusumeshkant-portfolio
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: develop

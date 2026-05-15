@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kusumeshkant.dqstore.in/sitemap.xml
