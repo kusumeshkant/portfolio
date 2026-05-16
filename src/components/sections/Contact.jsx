@@ -27,7 +27,7 @@ const SOCIALS = [
 
 const AVAILABILITY_POINTS = [
   { Icon: CheckCircle2, text: 'Available for freelance & full-time opportunities' },
-  { Icon: Clock,        text: 'Typically responds within 24 hours'               },
+  { Icon: Clock,        text: 'Typically responds within 18–24 hours (available during IST hours)' },
   { Icon: ExternalLink, text: 'Available worldwide for remote collaboration'      },
 ]
 
