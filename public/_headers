@@ -12,11 +12,12 @@
   # Hashed assets (JS/CSS) are immutable — cache aggressively
   Cache-Control: public, max-age=31536000, immutable
 
-/*.jpeg
+/img/*
+  # Generated responsive photos — regenerate with a new filename if they change
+  Cache-Control: public, max-age=2592000
+
+/*.png
   Cache-Control: public, max-age=86400
 
-/*.jpg
+/favicon.ico
   Cache-Control: public, max-age=86400
-
-/*.svg
-  Cache-Control: public, max-age=31536000, immutable
