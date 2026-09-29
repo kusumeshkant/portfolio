@@ -29,8 +29,8 @@ const CAPABILITIES = [
   },
   {
     Icon: Bot,
-    title: 'AI agents, with a human in the loop',
-    desc: 'Multi-agent systems on Claude, plus the approval console, audit trail and per-call tracing that make them safe to run.',
+    title: 'Learning AI agents by building',
+    desc: 'Personal projects on the Anthropic SDK: a multi-agent system on Claude and a human-in-the-loop approval app with an audit trail.',
   },
   {
     Icon: Users,

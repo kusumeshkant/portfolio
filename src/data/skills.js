@@ -41,8 +41,8 @@ export const SKILL_CATEGORIES = [
     label: 'AI & Agents',
     icon: '🤖',
     skills: [
-      { name: 'Anthropic SDK', core: true },
-      { name: 'Claude API (Sonnet / Haiku)', core: true },
+      { name: 'Anthropic SDK' },
+      { name: 'Claude API (Sonnet / Haiku)' },
       { name: 'Multi-agent orchestration' },
       { name: 'Langfuse' },
       { name: 'Prometheus' },

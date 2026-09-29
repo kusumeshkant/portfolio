@@ -152,9 +152,9 @@ export default function About() {
             <m.p {...fadeUp(0.1)} className="text-ink-muted leading-relaxed">
               I built the Selfe Loans app that Equitas Small Finance Bank used to process loan
               applications across 900+ branches, led the 150+ Health app with smartwatch sync on both
-              platforms, and mentor developers through code reviews. I also build at the AI layer: an
-              8-agent orchestration system on the Anthropic SDK, and Cockpit — a Flutter + Supabase
-              console for approving AI-agent actions from anywhere.
+              platforms, and mentor developers through code reviews. I'm also building hands-on with
+              AI agents in personal projects — an 8-agent orchestration system on the Anthropic SDK,
+              and Cockpit, a Flutter + Supabase console for approving AI-agent actions.
             </m.p>
 
             {/* Checklist */}
