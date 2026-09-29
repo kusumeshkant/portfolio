@@ -23,7 +23,7 @@ for name, url in FONT_URLS.items():
     if not os.path.exists(os.path.join(FONTS, name)):
         urllib.request.urlretrieve(url, os.path.join(FONTS, name))
 os.makedirs(f"{PUB}/img", exist_ok=True)
-src = Image.open(os.path.join(ROOT, "public", "me.jpeg")).convert("RGB")
+src = Image.open(os.path.join(ROOT, "design", "me-source.jpeg")).convert("RGB")
 W, H = src.size
 
 # ── 1. Responsive 3:4 portrait (matches the hero frame; head near the top) ──
