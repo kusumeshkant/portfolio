@@ -11,7 +11,7 @@ Legend: ✅ done (commit) · ⏸ deferred · ❌ not done (reason)
 
 | Topic | Decision | Commit |
 |---|---|---|
-| Headline | "Senior Flutter Developer", subline "Building with AI agents" (no "AI Agent Architect") | `3959b3d` |
+| Headline | "Senior Flutter Developer", subline "Agentic AI Builder" (no "AI Agent Architect"); AI work framed as hands-on personal projects | `3959b3d` + subtitle commit |
 | Years | 5+ everywhere | `87089ae` |
 | Hero stats | 5+ Years · 900+ Bank branches · 3 Domains (Fintech · Health · E-commerce) | `87089ae`, `c7c3618` |
 | Apto | Sr. Software Developer (Flutter), Sept 2025 — Mar 2026 | `cfb7f12` |

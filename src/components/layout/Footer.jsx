@@ -42,7 +42,7 @@ export default function Footer() {
             </div>
             <p className="text-ink-muted text-sm leading-relaxed">
               Senior Flutter Developer building production iOS &amp; Android apps — fintech, health
-              and e-commerce — and building hands-on with AI agents.
+              and e-commerce. Agentic AI Builder through hands-on personal projects.
             </p>
             <p className="text-ink-faint text-xs font-mono mt-3">{SITE_IDENTITY.location}</p>
           </div>

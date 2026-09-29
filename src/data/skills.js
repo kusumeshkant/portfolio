@@ -44,6 +44,7 @@ export const SKILL_CATEGORIES = [
       { name: 'Anthropic SDK' },
       { name: 'Claude API (Sonnet / Haiku)' },
       { name: 'Multi-agent orchestration' },
+      { name: 'Agentic coding tools (Claude Code)' },
       { name: 'Langfuse' },
       { name: 'Prometheus' },
       { name: 'Grafana' },

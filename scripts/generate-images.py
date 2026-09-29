@@ -101,7 +101,7 @@ for x in range(OW):
 og.paste(grad, (0, 0), mask)
 d = ImageDraw.Draw(og)
 d.text((x0, 400), "Senior Flutter Developer", font=font("Outfit.ttf", 44, "SemiBold"), fill=SKY)
-d.text((x0, 458), "Building with AI agents", font=font("Outfit.ttf", 30, "Regular"), fill=(201, 209, 217))
+d.text((x0, 458), "Agentic AI Builder", font=font("Outfit.ttf", 30, "Regular"), fill=(201, 209, 217))
 d.text((x0, 540), "Flutter · Riverpod · BLoC · Clean Architecture · Supabase", font=font("JBMono.ttf", 20, "Regular"), fill=(125, 133, 144))
 og.save(f"{PUB}/og-image.png", optimize=True)
 print("ok")
