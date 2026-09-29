@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GlassCard from '@/components/ui/GlassCard'
 import Badge from '@/components/ui/Badge'
-import { EXPERIENCES } from '@/data/experience'
+import { EXPERIENCES, EARLIER_ROLES } from '@/data/experience'
 import { TrendingUp } from 'lucide-react'
 
 /* Domain → accent colour */
@@ -24,7 +24,7 @@ const DOMAIN_COLORS = {
 }
 
 function ExperienceCard({ experience, index }) {
-  const { period, role, domain, description, tech, highlight } = experience
+  const { period, role, company, location, domain, description, tech, highlight } = experience
   const color = DOMAIN_COLORS[domain] ?? '#4FC3F7'
   const isEven = index % 2 === 0
 
@@ -59,6 +59,9 @@ function ExperienceCard({ experience, index }) {
                 {period}
               </p>
               <h3 className="font-display font-semibold text-ink-primary text-lg">{role}</h3>
+              <p className="text-ink-secondary text-sm mt-0.5">
+                {company} <span className="text-ink-muted">· {location}</span>
+              </p>
             </div>
             <span
               className="tag-pill"
@@ -73,7 +76,7 @@ function ExperienceCard({ experience, index }) {
 
           {/* Highlight stat */}
           <div className="flex items-center gap-2 text-xs font-mono" style={{ color }}>
-            <TrendingUp size={12} />
+            <TrendingUp size={12} aria-hidden />
             <span>{highlight}</span>
           </div>
 
@@ -99,7 +102,7 @@ export default function Experience() {
         <SectionHeader
           label="03 / Experience"
           title={<>A track record<br />of <span className="gradient-text">shipping.</span></>}
-          subtitle="From IoT sensors to payment processors — production experience across the stack and across industries."
+          subtitle="From bank-grade lending to smartwatch health sync and AI agents — Flutter in production since 2022."
         />
 
         {/* Timeline */}
@@ -112,6 +115,16 @@ export default function Experience() {
               <ExperienceCard key={exp.id} experience={exp} index={i} />
             ))}
           </div>
+        </div>
+
+        {/* Earlier, non-development roles — kept brief */}
+        <div className="mt-12 pl-8 md:pl-0 md:text-center space-y-1">
+          {EARLIER_ROLES.map(({ period, role, company, location, note }) => (
+            <p key={company} className="text-ink-muted text-sm">
+              <span className="font-mono text-xs">Earlier · {period}</span>{' — '}
+              {role}, {company} ({location}) · {note}
+            </p>
+          ))}
         </div>
       </div>
     </section>
