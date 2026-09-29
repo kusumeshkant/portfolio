@@ -69,7 +69,7 @@ function ProjectCard({ project, featured = false, index = 0 }) {
         {/* Card content */}
         <div className={`flex flex-col flex-1 relative ${featured ? 'p-7' : 'p-5'} gap-4`}>
           {/* Header */}
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <div className="flex flex-wrap gap-1.5 mb-2">
                 <span
@@ -93,7 +93,7 @@ function ProjectCard({ project, featured = false, index = 0 }) {
             </div>
 
             {/* Stat */}
-            <div className="text-right flex-shrink-0">
+            <div className="text-right flex-shrink-0 ml-auto">
               <p className="font-display font-bold text-xl" style={{ color }}>
                 {stat.value}
               </p>
@@ -153,7 +153,7 @@ export default function Projects() {
         />
 
         {/* Featured row */}
-        <div className="grid md:grid-cols-3 gap-5 mb-5">
+        <div className="grid lg:grid-cols-3 gap-5 mb-5">
           {FEATURED_PROJECTS.map((project, i) => (
             <ProjectCard key={project.id} project={project} featured index={i} />
           ))}

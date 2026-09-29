@@ -213,7 +213,7 @@ export default function Hero() {
             {/* Stat strip — real numbers in the markup, no count-up */}
             <m.dl
               {...fadeUp(0.6)}
-              className="flex flex-wrap items-start gap-x-8 gap-y-3 pt-4"
+              className="grid grid-cols-3 gap-x-4 pt-4 sm:flex sm:flex-wrap sm:items-start sm:gap-x-8 sm:gap-y-3"
               style={{ borderTop: '1px solid rgba(100,180,255,0.07)' }}
             >
               {STATS.map(({ value, label, detail }) => (
