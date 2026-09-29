@@ -2,15 +2,15 @@
  * Footer — Kusumeshkant Sharma
  * Clean, minimal. Three columns: brand · nav · connect.
  */
-import { Github, Linkedin, Mail, ExternalLink, Phone } from 'lucide-react'
+import { Github, Linkedin, Mail, Phone } from 'lucide-react'
 import { NAV_LINKS, SOCIAL_LINKS, SITE_IDENTITY } from '@/data/navigation'
 
+// external: true → opens in a new tab (never for mailto:/tel:)
 const SOCIALS = [
-  { href: SOCIAL_LINKS.github,   Icon: Github,       label: 'GitHub'   },
-  { href: SOCIAL_LINKS.linkedin, Icon: Linkedin,      label: 'LinkedIn' },
-  { href: SOCIAL_LINKS.fiverr,   Icon: ExternalLink,  label: 'Fiverr'   },
-  { href: SOCIAL_LINKS.email,    Icon: Mail,          label: 'Email'    },
-  { href: SOCIAL_LINKS.phone,    Icon: Phone,         label: SITE_IDENTITY.phone },
+  { href: SOCIAL_LINKS.github,   Icon: Github,   label: 'GitHub',   external: true },
+  { href: SOCIAL_LINKS.linkedin, Icon: Linkedin, label: 'LinkedIn', external: true },
+  { href: SOCIAL_LINKS.email,    Icon: Mail,     label: 'Email'    },
+  { href: SOCIAL_LINKS.phone,    Icon: Phone,    label: 'Phone'    },
 ]
 
 export default function Footer() {
@@ -41,7 +41,8 @@ export default function Footer() {
               <span className="font-display font-semibold text-ink-primary">{SITE_IDENTITY.firstName}</span>
             </div>
             <p className="text-ink-muted text-sm leading-relaxed">
-              Building scalable, production-grade systems across fintech, healthcare, and AI.
+              Senior Flutter Developer building production iOS &amp; Android apps — fintech, health
+              and e-commerce — and the AI-agent systems behind them.
             </p>
             <p className="text-ink-faint text-xs font-mono mt-3">{SITE_IDENTITY.location}</p>
           </div>
@@ -71,15 +72,14 @@ export default function Footer() {
               Connect
             </p>
             <ul className="space-y-2">
-              {SOCIALS.map(({ href, Icon, label }) => (
+              {SOCIALS.map(({ href, Icon, label, external }) => (
                 <li key={label}>
                   <a
                     href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
                     className="flex items-center gap-2 text-ink-muted text-sm hover:text-sky transition-colors duration-200"
                   >
-                    <Icon size={13} />
+                    <Icon size={13} aria-hidden />
                     {label}
                   </a>
                 </li>
