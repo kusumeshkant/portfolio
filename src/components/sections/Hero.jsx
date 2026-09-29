@@ -418,7 +418,7 @@ export default function Hero() {
                 <ArrowRight size={14} />
               </Button>
               <a
-                href="/Kusumeshkant_Sharma_Resume.pdf"
+                href="/Kusumesh_Resume.pdf"
                 download
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-display font-medium transition-all duration-300 text-ink-muted hover:text-sky"
                 style={{ border: '1px solid rgba(100,180,255,0.1)', background: 'rgba(19,28,46,0.3)' }}
