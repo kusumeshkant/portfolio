@@ -12,7 +12,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/utils/cn'
 
 const base =
-  'relative inline-flex items-center gap-2 rounded-xl px-6 py-3 font-display font-medium text-sm tracking-wide transition-all duration-300 focus-visible:outline-none cursor-none'
+  'relative inline-flex items-center gap-2 rounded-xl px-6 py-3 font-display font-medium text-sm tracking-wide transition-all duration-300'
 
 const variants = {
   primary: `

@@ -3,9 +3,10 @@
  *
  * Responsibilities:
  *  1. Renders the global layout shell (Navbar, sections, Footer)
- *  2. Provides the custom cursor
- *  3. Provides SEO meta tags via react-helmet-async
- *  4. Handles section lazy loading via React.lazy + Suspense
+ *  2. Handles section lazy loading via React.lazy + Suspense
+ *
+ * SEO tags (title, description, OG) live statically in index.html so that
+ * crawlers and link unfurlers see them without running JavaScript.
  *
  * Architecture pattern:
  *  Each section is lazy-loaded so the initial JS bundle stays small.
@@ -13,14 +14,10 @@
  *  All other sections are loaded when React is idle after first paint.
  */
 import { lazy, Suspense } from 'react'
-import { Helmet } from 'react-helmet-async'
 
 // Layout
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-
-// Custom cursor (desktop only, hidden on mobile via CSS)
-import Cursor from '@/components/ui/Cursor'
 
 // Sections — Hero is eager (above the fold), rest are lazy
 import Hero from '@/components/sections/Hero'
@@ -44,15 +41,6 @@ function SectionFallback() {
 export default function App() {
   return (
     <>
-      {/* Global SEO — individual sections can override with their own <Helmet> */}
-      <Helmet>
-        <title>D.Q. — Full Stack Engineer & Flutter Developer</title>
-        <meta name="description" content="Senior Full Stack Engineer specialising in fintech, healthcare, and AI platforms." />
-      </Helmet>
-
-      {/* Custom cursor (hidden on mobile via CSS) */}
-      <Cursor />
-
       {/* Navigation */}
       <Navbar />
 

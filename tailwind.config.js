@@ -25,7 +25,7 @@ export default {
           primary: '#F0F6FC',
           secondary: '#C9D1D9',
           muted: '#7D8590',
-          faint: '#3D444D',
+          faint: '#6E7681',   // was #3D444D (2:1) — now ≈4.3:1 on bg
         },
         glass: {
           DEFAULT: 'rgba(13,17,23,0.7)',

@@ -2,11 +2,11 @@
  * FloatingShapes
  * The 3D interactive section — floating geometric objects that react to mouse.
  * Objects: tetrahedron, octahedron, torus, icosahedron
- * Mouse interaction: moves camera origin slightly → parallax feel
+ * Mouse interaction: when hovering the canvas, the camera drifts slightly → parallax.
+ * Uses R3F's built-in normalised pointer, so there's no global mousemove listener.
  */
 import { useRef } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useMousePosition } from '@/hooks/useMousePosition'
+import { Canvas, useFrame } from '@react-three/fiber'
 
 /* ── Single floating shape ──────────────────────────────────────────── */
 function FloatingShape({ geometry, position, speed, phase, color, scale = 1 }) {
@@ -36,14 +36,12 @@ function FloatingShape({ geometry, position, speed, phase, color, scale = 1 }) {
   )
 }
 
-/* ── Camera rig — follows mouse with spring ─────────────────────────── */
-function CameraRig({ mouseX, mouseY }) {
-  const { camera, size } = useThree()
-
-  useFrame(() => {
-    // Map mouse to small camera offset (max ±0.5 units)
-    const targetX = (mouseX / size.width  - 0.5) * 1.2
-    const targetY = (mouseY / size.height - 0.5) * -0.8
+/* ── Camera rig — eases toward the pointer ──────────────────────────── */
+function CameraRig() {
+  useFrame(({ camera, pointer }) => {
+    // pointer is normalised to -1…1 across the canvas
+    const targetX = pointer.x * 0.6
+    const targetY = pointer.y * 0.4
 
     // Lerp smoothly to target (factor 0.04 = slow, cinematic)
     camera.position.x += (targetX - camera.position.x) * 0.04
@@ -55,14 +53,14 @@ function CameraRig({ mouseX, mouseY }) {
 }
 
 /* ── Scene ──────────────────────────────────────────────────────────── */
-function Scene({ mouseX, mouseY }) {
+function Scene() {
   return (
     <>
       <ambientLight intensity={0.4} />
       <pointLight position={[5, 5, 5]} intensity={1} color="#4FC3F7" />
       <pointLight position={[-5, -3, -5]} intensity={0.5} color="#8B5CF6" />
 
-      <CameraRig mouseX={mouseX} mouseY={mouseY} />
+      <CameraRig />
 
       <FloatingShape
         geometry={<octahedronGeometry args={[1.1]} />}
@@ -109,8 +107,6 @@ function Scene({ mouseX, mouseY }) {
 }
 
 export default function FloatingShapes() {
-  const { x: mouseX, y: mouseY } = useMousePosition()
-
   return (
     <Canvas
       camera={{ position: [0, 0, 7], fov: 50 }}
@@ -118,7 +114,7 @@ export default function FloatingShapes() {
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.5]}
     >
-      <Scene mouseX={mouseX} mouseY={mouseY} />
+      <Scene />
     </Canvas>
   )
 }

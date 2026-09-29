@@ -10,12 +10,16 @@ export const SITE_IDENTITY = {
   firstName: 'Kusumeshkant',
   lastName:  'Sharma',
   initials:  'KS',
-  tagline:   'Full Stack Engineer · Flutter & React Specialist',
+  title:     'Senior Flutter Developer',
+  subtitle:  'AI Agent Architect',
+  tagline:   'Senior Flutter Developer · AI Agent Architect',
+  yearsExperience: 4,                     // development roles only (Feb 2022 →), excludes Concentrix
   email:     'kusumeshkantsharma@gmail.com',
   phone:     '+91 8884133322',
   phoneTel:  'tel:+918884133322',        // used for click-to-call <a href>
-  location:  'India · Available Worldwide',
+  location:  'Bangalore · Open to Remote',
   available: 'Open to freelance & full-time opportunities',
+  resume:    '/Kusumesh_Resume.pdf',
 }
 
 export const NAV_LINKS = [
@@ -28,8 +32,7 @@ export const NAV_LINKS = [
 
 export const SOCIAL_LINKS = {
   github:   'https://github.com/kusumeshkant',
-  linkedin: 'https://linkedin.com/in/kusumeshkant-sharma',
-  fiverr:   'https://fiverr.com/kusumeshkant',
+  linkedin: 'https://www.linkedin.com/in/kusumeshkantsharma/',
   email:    'mailto:kusumeshkantsharma@gmail.com',
   phone:    'tel:+918884133322',
 }

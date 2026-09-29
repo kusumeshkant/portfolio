@@ -2,7 +2,7 @@
  * Navbar
  * Fixed top navigation with:
  *  - Scroll progress bar (thin sky line across the top)
- *  - Logo (DQ)
+ *  - Logo (KS monogram)
  *  - Desktop nav links with active highlight
  *  - Hire Me CTA button
  *  - Mobile hamburger menu with animated drawer
@@ -92,7 +92,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-ink-muted hover:text-ink-primary transition-colors cursor-none"
+            className="md:hidden p-2 text-ink-muted hover:text-ink-primary transition-colors"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}

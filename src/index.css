@@ -17,6 +17,7 @@
   --ink-primary: #F0F6FC;
   --ink-secondary: #C9D1D9;
   --ink-muted: #7D8590;
+  --ink-faint: #6E7681;   /* ≈4.3:1 on --bg — placeholders & fine print only */
   --glass-bg: rgba(13, 17, 23, 0.7);
   --glass-border: rgba(100, 180, 255, 0.07);
   --glass-border-glow: rgba(79, 195, 247, 0.25);
@@ -49,15 +50,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  /* Hide default cursor — we use a custom one */
-  cursor: none;
-}
-
-/* Restore cursor on mobile where custom cursor doesn't make sense */
-@media (max-width: 768px) {
-  body {
-    cursor: auto;
-  }
 }
 
 /* ─── Selection colour ───────────────────────────────────────────────── */
@@ -203,6 +195,17 @@ body::after {
   animation: scan-line 12s linear infinite;
   pointer-events: none;
   z-index: 9998;
+}
+
+/* Respect the OS "reduce motion" setting for CSS-driven motion too */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body::after { animation: none; display: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ─── Dot grid background ───────────────────────────────────────────── */

@@ -2,18 +2,19 @@
  * main.jsx — Application entry point
  *
  * React 18's createRoot API is used here (not the legacy render).
- * HelmetProvider wraps everything to enable per-component SEO tags.
+ * MotionConfig reducedMotion="user" makes every Framer Motion animation
+ * respect the OS "reduce motion" setting (transforms are skipped, opacity kept).
  */
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HelmetProvider } from 'react-helmet-async'
+import { MotionConfig } from 'framer-motion'
 import App from './App.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HelmetProvider>
+    <MotionConfig reducedMotion="user">
       <App />
-    </HelmetProvider>
+    </MotionConfig>
   </StrictMode>,
 )
