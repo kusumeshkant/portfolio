@@ -18,7 +18,7 @@ export const SITE_IDENTITY = {
   phone:     '+91 8884133322',
   phoneTel:  'tel:+918884133322',        // used for click-to-call <a href>
   location:  'Bangalore · Open to Remote',
-  available: 'Open to freelance & full-time opportunities',
+  available: 'Open to senior Flutter roles — remote or Bangalore',
   resume:    '/Kusumesh_Resume.pdf',
 }
 

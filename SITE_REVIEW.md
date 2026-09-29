@@ -42,7 +42,7 @@ Legend: ✅ done (commit) · ⏸ deferred · ❌ not done (reason)
 | M11 | Hero clipped at 360/768px | ✅ `23a14c6`, `c7c3618` — verified at 360/768/1024/1440 |
 | M12 | Button focus ring removed | ✅ `683facf` (+ input focus rings `e86fd3f`) |
 | M13 | og-image.png missing | ✅ `6a4ebf3`, regenerated `3959b3d` — 1200×630 with width/height/alt tags |
-| M14 | Contact form claimed "sent" via mailto | ✅ `e86fd3f` — now "Opening your email app…". Real delivery ⏸ pending your choice (§4) |
+| M14 | Contact form claimed "sent" via mailto | ✅ Form removed by choice — direct contact details only (§4) |
 
 ## 2. Should fix
 
@@ -87,48 +87,9 @@ What moved the needle: Three.js no longer preloaded on every visit (963 kB), des
 
 ---
 
-## 4. Contact form — options for real delivery (not set up)
+## 4. Contact section
 
-Today the form opens the visitor's email app (`mailto:`). Two drop-in options; both work on Cloudflare Pages with no backend.
-
-### Option A — Formspree
-- **Setup:** create an account at formspree.io → New form → copy the form ID (`https://formspree.io/f/<id>`). Add `VITE_FORMSPREE_ID=<id>` to Cloudflare Pages env vars (and a local `.env`).
-- **Free tier:** about 50 submissions/month, Formspree branding on emails (check current pricing before relying on it).
-- **Spam protection:** built-in spam filtering; honeypot field named `_gotcha` is ignored automatically; reCAPTCHA/hCaptcha available on paid plans.
-- **Code change** (`src/components/sections/Contact.jsx`, `onSubmit`):
-  ```jsx
-  const onSubmit = async (data) => {
-    const res = await fetch(`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(data),        // includes _gotcha (honeypot)
-    })
-    if (!res.ok) throw new Error('send failed')   // show an error state + email fallback
-    setSubmitted(true)                             // success copy: "Thanks — message sent."
-  }
-  ```
-  Honeypot input (visually hidden, not `display:none`):
-  ```jsx
-  <input type="text" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px]" {...register('_gotcha')} />
-  ```
-
-### Option B — EmailJS
-- **Setup:** account at emailjs.com → Add Email Service (connect Gmail) → Create Email Template with `{{name}}`, `{{email}}`, `{{subject}}`, `{{message}}` → copy Service ID, Template ID, Public Key into `VITE_EMAILJS_SERVICE`, `VITE_EMAILJS_TEMPLATE`, `VITE_EMAILJS_KEY`. `npm install @emailjs/browser`.
-- **Free tier:** about 200 emails/month, 2 templates (check current pricing).
-- **Spam protection:** enable reCAPTCHA v2 in the template settings (needs a Google reCAPTCHA site key), restrict allowed origins to your domain in EmailJS security settings, and add the same honeypot — but check it client-side (skip sending if filled), since EmailJS doesn't filter it.
-- **Code change:**
-  ```jsx
-  import emailjs from '@emailjs/browser'
-
-  const onSubmit = async ({ _gotcha, ...data }) => {
-    if (_gotcha) return setSubmitted(true)          // bot: pretend success
-    await emailjs.send(import.meta.env.VITE_EMAILJS_SERVICE, import.meta.env.VITE_EMAILJS_TEMPLATE, data,
-                       { publicKey: import.meta.env.VITE_EMAILJS_KEY })
-    setSubmitted(true)
-  }
-  ```
-
-**Recommendation:** Formspree — fewer moving parts, server-side spam filtering, no SDK. Either way, update the success copy to "Thanks — message sent" and keep the direct email as a fallback on error.
+The contact form was **removed by choice** (commit `feat(contact): remove form, show direct contact details`). The section now shows direct contact details only — Email (mailto), Phone / WhatsApp (tel), LinkedIn and GitHub as a 2×2 grid of cards on desktop and a single column on mobile — plus the availability line ("Open to senior Flutter roles — remote or Bangalore") and the response-time line. No third-party form service, and `react-hook-form` is uninstalled.
 
 ---
 
