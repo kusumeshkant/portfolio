@@ -1,14 +1,15 @@
 /**
  * Projects Section — polished version
  * ─────────────────────────────────────
- * New: cursor-tracking gradient on cards (the "alive" effect from Stripe/Linear).
- * When the mouse moves over a card, a soft radial gradient follows the cursor,
- * revealing depth from the card surface. Framer Motion tracks the mouse position
- * and animates it smoothly.
+ * Cursor-tracking gradient on cards: purely a hover enhancement — on touch
+ * devices nothing happens and nothing is lost.
+ *
+ * Links: a card shows only the links it actually has (Play Store, live site,
+ * product page). There are no placeholder "Code" / "Live Demo" buttons.
  */
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { Github, ExternalLink, ArrowUpRight } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GlassCard from '@/components/ui/GlassCard'
 import Badge from '@/components/ui/Badge'
@@ -16,7 +17,7 @@ import { FEATURED_PROJECTS, STANDARD_PROJECTS } from '@/data/projects'
 
 /* Card with cursor-tracking radial gradient */
 function ProjectCard({ project, featured = false, index = 0 }) {
-  const { name, tagline, domain, description, tech, color, links, stat } = project
+  const { name, tagline, domain, status, description, tech, color, links, stat } = project
   const cardRef = useRef(null)
 
   // Mouse position relative to card — for the gradient follow effect
@@ -71,12 +72,19 @@ function ProjectCard({ project, featured = false, index = 0 }) {
           {/* Header */}
           <div className="flex items-start justify-between gap-3">
             <div>
-              <span
-                className="inline-block tag-pill text-[10px] mb-2"
-                style={{ backgroundColor: `${color}14`, borderColor: `${color}30`, color }}
-              >
-                {domain}
-              </span>
+              <div className="flex flex-wrap gap-1.5 mb-2">
+                <span
+                  className="tag-pill"
+                  style={{ backgroundColor: `${color}14`, borderColor: `${color}30`, color }}
+                >
+                  {domain}
+                </span>
+                {status && (
+                  <span className="tag-pill" style={{ background: 'rgba(125,133,144,0.1)', borderColor: 'rgba(125,133,144,0.3)', color: '#C9D1D9' }}>
+                    {status}
+                  </span>
+                )}
+              </div>
               <h3
                 className={`font-display font-bold text-ink-primary ${featured ? 'text-xl' : 'text-base'}`}
               >
@@ -90,7 +98,7 @@ function ProjectCard({ project, featured = false, index = 0 }) {
               <p className="font-display font-bold text-xl" style={{ color }}>
                 {stat.value}
               </p>
-              <p className="text-ink-muted text-[10px] font-mono">{stat.label}</p>
+              <p className="text-ink-muted text-[11px] font-mono">{stat.label}</p>
             </div>
           </div>
 
@@ -104,30 +112,24 @@ function ProjectCard({ project, featured = false, index = 0 }) {
             ))}
           </div>
 
-          {/* Links */}
-          <div className="flex items-center gap-4 pt-1 border-t border-glass-border">
-            <a
-              href={links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-ink-muted hover:text-ink-primary transition-colors text-xs font-mono"
-            >
-              <Github size={12} /> Code
-            </a>
-            <a
-              href={links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-mono hover:opacity-100 transition-opacity"
-              style={{ color, opacity: 0.75 }}
-            >
-              <ExternalLink size={12} /> Live Demo
-            </a>
-            {/* Hover arrow — appears on card hover */}
-            <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <ArrowUpRight size={14} className="text-ink-muted" />
+          {/* Links — only real, public URLs */}
+          {links.length > 0 && (
+            <div className="flex flex-wrap items-center gap-4 pt-3 border-t border-glass-border">
+              {links.map(({ label, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-mono hover:underline"
+                  style={{ color }}
+                  aria-label={`${name} — ${label} (opens in a new tab)`}
+                >
+                  <ExternalLink size={12} aria-hidden /> {label}
+                </a>
+              ))}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </motion.div>
@@ -148,7 +150,7 @@ export default function Projects() {
         <SectionHeader
           label="04 / Projects"
           title={<>Work that <span className="gradient-text">speaks.</span></>}
-          subtitle="Six production-grade projects across fintech, healthcare, AI, and real-time systems. Move your mouse over the cards."
+          subtitle="Production apps across fintech, health and e-commerce — and the AI-agent systems I'm building now."
         />
 
         {/* Featured row */}
