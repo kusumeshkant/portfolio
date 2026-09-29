@@ -12,6 +12,7 @@ import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Html, Sphere } from '@react-three/drei'
 import * as THREE from 'three'
+import { GLOBE_NODES } from '@/data/skills'
 
 /** Convert lat/long degrees → 3D point on a sphere of radius r */
 function latLongToVec3(lat, lon, r = 2.2) {
@@ -24,17 +25,6 @@ function latLongToVec3(lat, lon, r = 2.2) {
   )
 }
 
-const NODES = [
-  { tech: 'Flutter',    lat:  30, lon:  -30, color: '#54C5F8' },
-  { tech: 'React',      lat:  50, lon:   60, color: '#61DAFB' },
-  { tech: 'Node.js',    lat: -20, lon:  120, color: '#68A063' },
-  { tech: 'Firebase',   lat: -40, lon:  -60, color: '#FFA000' },
-  { tech: 'GraphQL',    lat:  10, lon: -120, color: '#E10098' },
-  { tech: 'AWS',        lat:  70, lon:  150, color: '#FF9900' },
-  { tech: 'Docker',     lat: -60, lon:   30, color: '#2496ED' },
-  { tech: 'MongoDB',    lat:  20, lon:   -5, color: '#4DB33D' },
-  { tech: 'Azure',      lat: -10, lon:   90, color: '#0089D6' },
-]
 
 function Globe({ paused }) {
   const groupRef = useRef()
@@ -63,7 +53,7 @@ function Globe({ paused }) {
       </mesh>
 
       {/* Tech nodes */}
-      {NODES.map(({ tech, lat, lon, color }) => {
+      {GLOBE_NODES.map(({ tech, lat, lon, color }) => {
         const pos = latLongToVec3(lat, lon, 2.2)
         return (
           <group key={tech} position={pos}>
@@ -86,7 +76,7 @@ function Globe({ paused }) {
               <span
                 style={{
                   fontFamily: '"JetBrains Mono", monospace',
-                  fontSize: '9px',
+                  fontSize: '11px',
                   color: color,
                   background: 'rgba(8,11,20,0.7)',
                   border: `1px solid ${color}40`,
