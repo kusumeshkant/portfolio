@@ -107,30 +107,30 @@ export default function Interactive3D() {
 
           {/* ── Right: 3D Canvas ──────────────────────────────────── */}
           {rich3D && (
-          <m.div
-            aria-hidden
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="h-[480px] relative rounded-2xl overflow-hidden border border-glass-border"
-          >
-            {/* Frame corners */}
-            <div className="absolute top-3 left-3 w-5 h-5 border-l border-t border-sky/30 z-10" />
-            <div className="absolute top-3 right-3 w-5 h-5 border-r border-t border-sky/30 z-10" />
-            <div className="absolute bottom-3 left-3 w-5 h-5 border-l border-b border-sky/30 z-10" />
-            <div className="absolute bottom-3 right-3 w-5 h-5 border-r border-b border-sky/30 z-10" />
-
-            <Suspense
-              fallback={
-                <div className="h-full flex items-center justify-center text-ink-muted font-mono text-xs">
-                  Loading 3D scene…
-                </div>
-              }
+            <m.div
+              aria-hidden
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="h-[480px] relative rounded-2xl overflow-hidden border border-glass-border"
             >
-              <FloatingShapes />
-            </Suspense>
-          </m.div>
+              {/* Frame corners */}
+              <div className="absolute top-3 left-3 w-5 h-5 border-l border-t border-sky/30 z-10" />
+              <div className="absolute top-3 right-3 w-5 h-5 border-r border-t border-sky/30 z-10" />
+              <div className="absolute bottom-3 left-3 w-5 h-5 border-l border-b border-sky/30 z-10" />
+              <div className="absolute bottom-3 right-3 w-5 h-5 border-r border-b border-sky/30 z-10" />
+
+              <Suspense
+                fallback={
+                  <div className="h-full flex items-center justify-center text-ink-muted font-mono text-xs">
+                    Loading 3D scene…
+                  </div>
+                }
+              >
+                <FloatingShapes />
+              </Suspense>
+            </m.div>
           )}
         </div>
       </div>
