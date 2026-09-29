@@ -11,7 +11,6 @@ import { useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
-import GlassCard from '@/components/ui/GlassCard'
 import Badge from '@/components/ui/Badge'
 import { FEATURED_PROJECTS, STANDARD_PROJECTS } from '@/data/projects'
 

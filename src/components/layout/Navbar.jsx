@@ -10,7 +10,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { NAV_LINKS, SOCIAL_LINKS, SITE_IDENTITY } from '@/data/navigation'
+import { NAV_LINKS, SITE_IDENTITY } from '@/data/navigation'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 import Button from '@/components/ui/Button'
 

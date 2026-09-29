@@ -14,8 +14,6 @@
  */
 import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
 
 /* ── Particles ─────────────────────────────────────────────────────── */
 function Particles({ count = 2000 }) {
