@@ -12,14 +12,14 @@ export default defineConfig({
     },
   },
   build: {
-    // Split large vendors into separate chunks for better caching
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          'motion-vendor': ['framer-motion'],
-          // 'gsap-vendor': ['gsap'],  // uncomment when GSAP is used in components
+        // Only framer-motion gets its own long-cached chunk. Three.js is left to
+        // Rollup: it's reachable only through lazy 3D components, so it stays out
+        // of the initial load. (A static manualChunks map for three/react pulled
+        // React into the Three.js chunk and forced a 963 kB modulepreload.)
+        manualChunks(id) {
+          if (id.includes('node_modules/framer-motion')) return 'motion-vendor'
         },
       },
     },
