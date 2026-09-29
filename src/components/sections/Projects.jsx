@@ -149,7 +149,7 @@ export default function Projects() {
         <SectionHeader
           label="04 / Projects"
           title={<>Work that <span className="gradient-text">speaks.</span></>}
-          subtitle="Production apps across fintech, health and e-commerce — and the AI-agent systems I'm building now."
+          subtitle="Production Flutter apps across fintech, health and e-commerce — plus two personal projects."
         />
 
         {/* Featured row */}

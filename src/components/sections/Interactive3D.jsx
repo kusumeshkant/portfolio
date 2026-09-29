@@ -11,7 +11,7 @@
  */
 import { Suspense, lazy } from 'react'
 import { m } from 'framer-motion'
-import { Layers, ShieldCheck, Bot, Users, Rocket } from 'lucide-react'
+import { Layers, ShieldCheck, Users, Rocket } from 'lucide-react'
 import { useRich3D } from '@/hooks/useMediaQuery'
 
 const FloatingShapes = lazy(() => import('@/components/three/FloatingShapes'))
@@ -25,12 +25,7 @@ const CAPABILITIES = [
   {
     Icon: ShieldCheck,
     title: 'Secure by default',
-    desc: 'Interceptor-level request/response encryption, OAuth 2.0, HMAC-signed webhooks and row-level security in production code.',
-  },
-  {
-    Icon: Bot,
-    title: 'Learning AI agents by building',
-    desc: 'Personal projects on the Anthropic SDK: a multi-agent system on Claude and a human-in-the-loop approval app with an audit trail.',
+    desc: 'Interceptor-level request/response encryption with Dio and OAuth 2.0 integration in production fintech apps.',
   },
   {
     Icon: Users,
@@ -40,7 +35,7 @@ const CAPABILITIES = [
   {
     Icon: Rocket,
     title: 'Ships end-to-end',
-    desc: 'From Flutter UI to Node.js and Supabase backends, through to the App Store and Play Store release.',
+    desc: 'Architecture, API integration and Flutter UI, through to the App Store and Play Store release.',
   },
 ]
 

@@ -24,7 +24,7 @@ export const EXPERIENCES = [
     role: 'Sr. Software Developer (Flutter)',
     domain: 'Health & Sports',
     description:
-      'Led Flutter development of 150+ Health (Play Store) with smartwatch sync via Google Health Connect (Android) and Apple HealthKit (iOS). Mentored junior developers on Clean Architecture and state management and ran code reviews across the mobile codebase. Built the Node.js / Express.js / MongoDB backend for analytics and content delivery, and the RacketPro trainer platform.',
+      'Led Flutter development of 150+ Health (Play Store) with smartwatch sync via Google Health Connect (Android) and Apple HealthKit (iOS). Mentored junior developers on Clean Architecture and state management and ran code reviews across the mobile codebase. Built the Node.js / Express.js / MongoDB backend for analytics and content delivery, and built the RacketPro trainer certification platform (racketpro.org) with Flutter + GetX.',
     tech: ['Flutter', 'Health Connect', 'Apple HealthKit', 'GetX', 'Node.js', 'Express.js', 'MongoDB'],
     highlight: 'Mentored developers · led code reviews',
   },

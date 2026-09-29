@@ -46,6 +46,7 @@ export const SKILL_CATEGORIES = [
       { name: 'Multi-agent orchestration' },
       { name: 'Agentic coding tools (Claude Code)' },
       { name: 'Langfuse' },
+      { name: 'Inngest' },
       { name: 'Prometheus' },
       { name: 'Grafana' },
       { name: 'Docker Compose' },
@@ -72,7 +73,7 @@ export const SKILL_CATEGORIES = [
     label: 'Cloud & CI/CD',
     icon: '☁️',
     skills: [
-      { name: 'Supabase (Postgres, Auth, Edge Functions)', core: true },
+      { name: 'Supabase (Postgres, Auth, Edge Functions)' },
       { name: 'Firebase (Auth, Firestore, FCM, Analytics)', core: true },
       { name: 'AWS S3' },
       { name: 'GitHub Actions' },

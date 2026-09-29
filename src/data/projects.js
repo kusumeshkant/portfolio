@@ -27,7 +27,7 @@ export const PROJECTS = [
     tagline: 'Digital lending — Equitas Small Finance Bank',
     domain: 'Fintech',
     description:
-      'Production lending app for Equitas Small Finance Bank: end-to-end KYC, document upload and real-time application tracking across 900+ branch integrations, built on Riverpod + MVVM with strict Clean Architecture and an interceptor-encrypted Dio API client.',
+      'Production lending app for Equitas Small Finance Bank: end-to-end KYC, document upload and real-time application tracking across 900+ branch integrations, built on Riverpod + MVVM with strict Clean Architecture and an interceptor-encrypted Dio API client. Shipped on Play Store.',
     tech: ['Flutter', 'Riverpod', 'MVVM', 'Dio', 'Firebase', 'REST APIs'],
     color: '#34D399',
     featured: true,
@@ -59,7 +59,7 @@ export const PROJECTS = [
     status: 'Personal project · 2026',
     description:
       'Hierarchical 8-agent system: an orchestrator on Claude Sonnet synthesizes the work of 7 parallel specialist agents on Claude Haiku (revenue, sales pipeline, churn, customer success, product, growth, platform) into a daily brief. Every LLM call traced in Langfuse with Prometheus and Grafana, all on Docker Compose.',
-    tech: ['Node.js', 'TypeScript', 'Anthropic SDK', 'Claude API', 'Langfuse', 'Prometheus', 'Grafana', 'Docker Compose'],
+    tech: ['Node.js', 'TypeScript', 'Anthropic SDK', 'Claude API', 'Langfuse', 'Inngest', 'Prometheus', 'Grafana', 'Docker Compose'],
     color: '#D97757',
     featured: false,
     links: [],
@@ -123,7 +123,7 @@ export const PROJECTS = [
     links: [
       { label: 'Play Store', href: 'https://play.google.com/store/apps/details?id=com.srajanai.cloud' },
     ],
-    stat: { value: 'Live', label: 'Play Store' },
+    stat: { value: 'Shipped', label: 'Play Store' },
   },
 ]
 

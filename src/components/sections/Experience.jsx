@@ -102,7 +102,7 @@ export default function Experience() {
         <SectionHeader
           label="03 / Experience"
           title={<>A track record<br />of <span className="gradient-text">shipping.</span></>}
-          subtitle="From bank-grade lending to smartwatch health sync and AI agents — Flutter in production since 2022."
+          subtitle="From bank-grade lending to smartwatch health sync — Flutter in production since 2022."
         />
 
         {/* Timeline */}

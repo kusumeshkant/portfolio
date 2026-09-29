@@ -7,7 +7,7 @@
  *  - Name badge anchored at bottom-left
  */
 import { m } from 'framer-motion'
-import { Smartphone, Layers, Bot, Server, CheckCircle2 } from 'lucide-react'
+import { Smartphone, Layers, Plug, Server, CheckCircle2 } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GlassCard from '@/components/ui/GlassCard'
 import ProfilePhoto from '@/components/ui/ProfilePhoto'
@@ -16,8 +16,8 @@ import { SITE_IDENTITY } from '@/data/navigation'
 const PILLARS = [
   { Icon: Smartphone, label: 'Mobile',         desc: 'Flutter · Dart · iOS · Android' },
   { Icon: Layers,     label: 'Architecture',   desc: 'Clean Arch · Riverpod · BLoC'   },
-  { Icon: Bot,        label: 'AI & Agents',    desc: 'Anthropic SDK · Claude API'     },
-  { Icon: Server,     label: 'Backend & Cloud', desc: 'Supabase · Firebase · Node.js' },
+  { Icon: Plug,       label: 'APIs & Auth',    desc: 'REST · GraphQL · OAuth 2.0'     },
+  { Icon: Server,     label: 'Cloud & CI/CD',  desc: 'Firebase · Supabase · GitHub Actions' },
 ]
 
 // Static values (no count-up) so crawlers, no-JS and reduced-motion users see real numbers
@@ -25,7 +25,7 @@ const STATS = [
   { value: `${SITE_IDENTITY.yearsExperience}+`, label: 'Years experience' },
   { value: '900+', label: 'Bank branches (Selfe Loans)' },
   { value: '3',    label: 'Domains: fintech · health · e-com' },
-  { value: '8',    label: 'AI agents orchestrated'  },
+  { value: '10 GB', label: 'Per-user cloud storage (StillsWeb)' },
 ]
 
 const HIGHLIGHTS = [
@@ -143,18 +143,18 @@ export default function About() {
           <div className="space-y-6">
             <m.p {...fadeUp(0)} className="text-ink-secondary text-lg leading-relaxed">
               I'm <span className="text-ink-primary font-medium">{SITE_IDENTITY.fullName}</span> — a
-              Senior Flutter Developer in Bangalore with {SITE_IDENTITY.yearsExperience}+ years shipping
-              production iOS and Android apps across fintech, health and e-commerce. I architect with
-              Clean Architecture and Riverpod/BLoC, and own releases end-to-end — from the first PR to
-              the App Store and Play Store.
+              Senior Flutter Developer in Bangalore with {SITE_IDENTITY.yearsExperience}+ years delivering
+              production cross-platform iOS and Android apps — Clean Architecture, Riverpod, BLoC, GraphQL
+              and real-time integrations across fintech, fitness and e-commerce. I own the full mobile
+              delivery cycle: architecture, API integration, code reviews and mentoring, through App Store
+              and Play Store releases.
             </m.p>
 
             <m.p {...fadeUp(0.1)} className="text-ink-muted leading-relaxed">
-              I built the Selfe Loans app that Equitas Small Finance Bank used to process loan
-              applications across 900+ branches, led the 150+ Health app with smartwatch sync on both
-              platforms, and mentor developers through code reviews. I'm also building hands-on with
-              AI agents in personal projects — an 8-agent orchestration system on the Anthropic SDK,
-              and Cockpit, a Flutter + Supabase console for approving AI-agent actions.
+              I architected the Selfe Loans app for Equitas Small Finance Bank across 900+ branch
+              integrations and led the 150+ Health app with smartwatch sync on both platforms. As a
+              personal project, I'm currently building Cockpit — a Flutter + Supabase app for approving
+              AI-agent actions.
             </m.p>
 
             {/* Checklist */}
