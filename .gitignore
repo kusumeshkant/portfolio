@@ -37,3 +37,4 @@ coverage
 
 # Claude Code internal settings
 .claude/
+scripts/.fonts/
