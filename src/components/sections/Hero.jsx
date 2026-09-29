@@ -446,17 +446,6 @@ export default function Hero() {
                   <span className="font-mono text-[10px] text-ink-muted tracking-wider uppercase">{label}</span>
                 </div>
               ))}
-
-              {/* Divider */}
-              <div className="w-px h-8 bg-glass-border mx-1" />
-
-              {/* Trust signals */}
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={11} style={{ color: '#FFB800', fill: '#FFB800' }} />
-                ))}
-                <span className="font-mono text-[10px] text-ink-muted ml-1">Fiverr</span>
-              </div>
             </motion.div>
           </div>
 
