@@ -27,8 +27,8 @@ const PHOTO_SIZES = '(min-width: 1280px) 420px, (min-width: 1024px) 380px, (min-
 
 const STATS = [
   { value: `${SITE_IDENTITY.yearsExperience}+`, label: 'Years' },
-  { value: '6',    label: 'Play Store apps' },
   { value: '900+', label: 'Bank branches' },
+  { value: '3',    label: 'Domains', detail: 'Fintech · Health · E-commerce' },
 ]
 
 /* Mount the 3D background only after the page has finished its critical work */
@@ -185,7 +185,7 @@ export default function Hero() {
             {/* Title */}
             <m.p {...fadeUp(0.3)} className="font-display">
               <span className="block text-lg md:text-2xl font-semibold text-sky">{SITE_IDENTITY.title}</span>
-              <span className="block text-sm md:text-base text-ink-muted mt-1">· {SITE_IDENTITY.subtitle}</span>
+              <span className="block text-sm md:text-base text-ink-muted mt-1">{SITE_IDENTITY.subtitle}</span>
             </m.p>
 
             {/* Tagline */}
@@ -213,12 +213,15 @@ export default function Hero() {
             {/* Stat strip — real numbers in the markup, no count-up */}
             <m.dl
               {...fadeUp(0.6)}
-              className="flex flex-wrap items-center gap-x-8 gap-y-3 pt-4"
+              className="flex flex-wrap items-start gap-x-8 gap-y-3 pt-4"
               style={{ borderTop: '1px solid rgba(100,180,255,0.07)' }}
             >
-              {STATS.map(({ value, label }) => (
+              {STATS.map(({ value, label, detail }) => (
                 <div key={label} className="flex flex-col-reverse">
-                  <dt className="font-mono text-[11px] text-ink-muted tracking-wider uppercase">{label}</dt>
+                  <dt className="font-mono text-[11px] text-ink-muted tracking-wider uppercase">
+                    {label}
+                    {detail && <span className="block normal-case tracking-normal">{detail}</span>}
+                  </dt>
                   <dd className="font-display font-bold text-xl text-ink-primary">{value}</dd>
                 </div>
               ))}

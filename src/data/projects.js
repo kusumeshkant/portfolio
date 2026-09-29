@@ -113,10 +113,10 @@ export const PROJECTS = [
   {
     id: 'srajan-ai',
     name: 'Srajan AI',
-    tagline: 'AI app — StillsWeb product family',
-    domain: 'AI / Mobile',
+    tagline: 'AI app — Flutter front end built from scratch',
+    domain: 'AI / AgriTech',
     description:
-      'Flutter app shipped to the Play Store during my time at StillsWeb, alongside the StillsWeb cloud gallery and Unsync.',
+      'AI farming app for crop health, pest scanning, mandi prices and a 7-day advisory, in 12 regional languages. I built the Flutter front end from scratch while at StillsWeb.',
     tech: ['Flutter', 'GetX', 'Firebase'],
     color: '#06B6D4',
     featured: false,

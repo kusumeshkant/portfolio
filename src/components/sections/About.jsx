@@ -22,9 +22,9 @@ const PILLARS = [
 
 // Static values (no count-up) so crawlers, no-JS and reduced-motion users see real numbers
 const STATS = [
-  { value: `${SITE_IDENTITY.yearsExperience}+`, label: 'Years with Flutter'    },
-  { value: '6',    label: 'Play Store apps shipped' },
+  { value: `${SITE_IDENTITY.yearsExperience}+`, label: 'Years experience' },
   { value: '900+', label: 'Bank branches (Selfe Loans)' },
+  { value: '3',    label: 'Domains: fintech · health · e-com' },
   { value: '8',    label: 'AI agents orchestrated'  },
 ]
 

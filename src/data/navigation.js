@@ -13,7 +13,7 @@ export const SITE_IDENTITY = {
   title:     'Senior Flutter Developer',
   subtitle:  'AI Agent Architect',
   tagline:   'Senior Flutter Developer · AI Agent Architect',
-  yearsExperience: 4,                     // development roles only (Feb 2022 →), excludes Concentrix
+  yearsExperience: 5,
   email:     'kusumeshkantsharma@gmail.com',
   phone:     '+91 8884133322',
   phoneTel:  'tel:+918884133322',        // used for click-to-call <a href>

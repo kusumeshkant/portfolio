@@ -48,7 +48,7 @@ export const EXPERIENCES = [
     role: 'Software Developer',
     domain: 'Cloud Storage & AI',
     description:
-      'Shipped StillsWeb (cloud photo gallery) and Srajan AI to the Play Store, and built Unsync, a real-time video/audio/text app on Firebase + WebRTC. Built Node.js / Express.js / MongoDB services, AWS S3 storage with role-based folder permissions (10 GB/user), Hive offline-first persistence, and React.js admin interfaces.',
+      'Shipped StillsWeb (cloud photo gallery) to the Play Store, built the Srajan AI Flutter front end from scratch, and built Unsync, a real-time video/audio/text app on Firebase + WebRTC. Built Node.js / Express.js / MongoDB services, AWS S3 storage with role-based folder permissions (10 GB/user), Hive offline-first persistence, and React.js admin interfaces.',
     tech: ['Flutter', 'GetX', 'Firebase', 'WebRTC', 'AWS S3', 'Hive', 'Node.js', 'React.js'],
     highlight: '10 GB cloud storage per user',
   },
