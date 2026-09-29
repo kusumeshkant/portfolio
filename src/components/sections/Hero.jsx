@@ -13,10 +13,10 @@
  */
 import { useState, useEffect, Suspense, lazy } from 'react'
 import { m } from 'framer-motion'
-import { ArrowRight, ChevronDown, Zap, MapPin, Download } from 'lucide-react'
+import { ArrowRight, ChevronDown, Zap, MapPin, Download, Github } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import ProfilePhoto from '@/components/ui/ProfilePhoto'
-import { SITE_IDENTITY } from '@/data/navigation'
+import { SITE_IDENTITY, SOCIAL_LINKS } from '@/data/navigation'
 import { useRich3D } from '@/hooks/useMediaQuery'
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'))
@@ -203,6 +203,17 @@ export default function Hero() {
               <Button variant="outline" href={SITE_IDENTITY.resume} download>
                 <Download size={14} aria-hidden />
                 Résumé (PDF)
+              </Button>
+              <Button
+                variant="outline"
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile (opens in a new tab)"
+                title="GitHub"
+                className="px-3.5"
+              >
+                <Github size={16} aria-hidden />
               </Button>
               <Button variant="ghost" href="#contact">
                 Contact
