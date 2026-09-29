@@ -6,7 +6,7 @@
  *  Bottom → Category cards with grouped skill tags (no self-rated percentages)
  */
 import { Suspense, lazy } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GlassCard from '@/components/ui/GlassCard'
 import { SKILL_CATEGORIES, TOOLS } from '@/data/skills'
@@ -17,7 +17,7 @@ const TechGlobe = lazy(() => import('@/components/three/TechGlobe'))
 /* One skill category panel */
 function CategoryCard({ label, icon, skills, index }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -41,7 +41,7 @@ function CategoryCard({ label, icon, skills, index }) {
           ))}
         </ul>
       </GlassCard>
-    </motion.div>
+    </m.div>
   )
 }
 

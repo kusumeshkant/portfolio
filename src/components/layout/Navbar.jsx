@@ -8,7 +8,7 @@
  *  - Mobile hamburger menu with animated drawer
  */
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, SITE_IDENTITY } from '@/data/navigation'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
@@ -33,14 +33,14 @@ export default function Navbar() {
     <>
       {/* Scroll progress indicator */}
       <div className="fixed top-0 left-0 right-0 h-[2px] z-[100]">
-        <motion.div
+        <m.div
           className="h-full bg-gradient-to-r from-sky via-violet to-sky"
           style={{ scaleX: progress, transformOrigin: 'left' }}
         />
       </div>
 
       {/* Nav bar */}
-      <motion.header
+      <m.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -98,12 +98,12 @@ export default function Navbar() {
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </motion.header>
+      </m.header>
 
       {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -125,7 +125,7 @@ export default function Navbar() {
                 Hire Me
               </Button>
             </nav>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

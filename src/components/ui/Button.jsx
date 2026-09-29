@@ -8,7 +8,7 @@
  *  <Button variant="primary" href="#contact">Hire Me</Button>
  *  <Button variant="outline" onClick={fn}>See Work</Button>
  */
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { cn } from '@/utils/cn'
 
 const base =
@@ -51,7 +51,7 @@ export default function Button({
   // Render as anchor when href is provided
   if (href) {
     return (
-      <motion.a
+      <m.a
         href={href}
         className={classes}
         whileHover={{ scale: 1.02 }}
@@ -59,18 +59,18 @@ export default function Button({
         {...props}
       >
         {children}
-      </motion.a>
+      </m.a>
     )
   }
 
   return (
-    <motion.button
+    <m.button
       className={classes}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.97 }}
       {...props}
     >
       {children}
-    </motion.button>
+    </m.button>
   )
 }

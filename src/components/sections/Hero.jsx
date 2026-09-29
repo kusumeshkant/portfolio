@@ -12,7 +12,7 @@
  *    and no reduced-motion preference, and only once the browser is idle.
  */
 import { useState, useEffect, Suspense, lazy } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowRight, ChevronDown, Zap, MapPin, Download } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import ProfilePhoto from '@/components/ui/ProfilePhoto'
@@ -20,6 +20,10 @@ import { SITE_IDENTITY } from '@/data/navigation'
 import { useRich3D } from '@/hooks/useMediaQuery'
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'))
+
+// Rendered width of the hero photo. Must match `imagesizes` on the preload in
+// index.html, or the browser downloads a second file.
+const PHOTO_SIZES = '(min-width: 1280px) 420px, (min-width: 1024px) 380px, (min-width: 640px) 288px, 224px'
 
 const STATS = [
   { value: `${SITE_IDENTITY.yearsExperience}+`, label: 'Years' },
@@ -74,7 +78,7 @@ function HeroPhoto() {
       >
         <ProfilePhoto
           alt={`${SITE_IDENTITY.fullName}, ${SITE_IDENTITY.title}`}
-          sizes="(min-width: 1280px) 420px, (min-width: 1024px) 380px, 288px"
+          sizes={PHOTO_SIZES}
           priority
           style={{ objectPosition: 'center top', filter: 'contrast(1.04) saturate(0.88) brightness(0.94)' }}
         />
@@ -153,7 +157,7 @@ export default function Hero() {
           <div className="space-y-5 order-2 lg:order-1 min-w-0">
 
             {/* Location + availability */}
-            <motion.div {...fadeUp(0.1)} className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <m.div {...fadeUp(0.1)} className="flex flex-wrap items-center gap-x-4 gap-y-1">
               <div className="flex items-center gap-1.5">
                 <MapPin size={12} className="text-sky/70" aria-hidden />
                 <span className="font-mono text-xs text-ink-muted">{SITE_IDENTITY.location}</span>
@@ -166,32 +170,32 @@ export default function Hero() {
                 />
                 <span className="font-mono text-xs text-sky/80">Available for work</span>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Name — one h1, two visual lines */}
-            <motion.h1
+            <m.h1
               {...fadeUp(0.2)}
               className="font-display font-bold leading-[0.95] tracking-tight"
               style={{ fontSize: 'clamp(2.25rem, 10vw, 5.2rem)' }}
             >
               <span className="block text-ink-primary">{SITE_IDENTITY.firstName}</span>
               <span className="block gradient-text">{SITE_IDENTITY.lastName}.</span>
-            </motion.h1>
+            </m.h1>
 
             {/* Title */}
-            <motion.p {...fadeUp(0.3)} className="font-display">
+            <m.p {...fadeUp(0.3)} className="font-display">
               <span className="block text-lg md:text-2xl font-semibold text-sky">{SITE_IDENTITY.title}</span>
               <span className="block text-sm md:text-base text-ink-muted mt-1">· {SITE_IDENTITY.subtitle}</span>
-            </motion.p>
+            </m.p>
 
             {/* Tagline */}
-            <motion.p {...fadeUp(0.4)} className="text-ink-secondary text-base md:text-lg leading-relaxed max-w-xl">
+            <m.p {...fadeUp(0.4)} className="text-ink-secondary text-base md:text-lg leading-relaxed max-w-xl">
               I build production Flutter apps for iOS and Android — from bank-grade lending
               at Equitas to smartwatch-synced health — with Clean Architecture, Riverpod and BLoC.
-            </motion.p>
+            </m.p>
 
             {/* CTAs */}
-            <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-3">
+            <m.div {...fadeUp(0.5)} className="flex flex-wrap gap-3">
               <Button variant="primary" href="#projects">
                 <Zap size={14} aria-hidden />
                 View my work
@@ -204,10 +208,10 @@ export default function Hero() {
                 Contact
                 <ArrowRight size={14} aria-hidden />
               </Button>
-            </motion.div>
+            </m.div>
 
             {/* Stat strip — real numbers in the markup, no count-up */}
-            <motion.dl
+            <m.dl
               {...fadeUp(0.6)}
               className="flex flex-wrap items-center gap-x-8 gap-y-3 pt-4"
               style={{ borderTop: '1px solid rgba(100,180,255,0.07)' }}
@@ -218,7 +222,7 @@ export default function Hero() {
                   <dd className="font-display font-bold text-xl text-ink-primary">{value}</dd>
                 </div>
               ))}
-            </motion.dl>
+            </m.dl>
           </div>
 
           {/* Right — photo */}
@@ -232,7 +236,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator (desktop only — on mobile the content already continues below) */}
-      <motion.a
+      <m.a
         href="#about"
         aria-label="Scroll to About"
         initial={{ opacity: 0 }}
@@ -241,13 +245,13 @@ export default function Hero() {
         className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-ink-muted"
       >
         <span className="font-mono text-[11px] tracking-[0.3em] uppercase">Scroll</span>
-        <motion.span
+        <m.span
           animate={{ y: [0, 5, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         >
           <ChevronDown size={14} aria-hidden />
-        </motion.span>
-      </motion.a>
+        </m.span>
+      </m.a>
     </section>
   )
 }

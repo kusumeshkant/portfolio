@@ -6,7 +6,7 @@
  *  - Left/right gradients blend the background into the dark card
  *  - Name badge anchored at bottom-left
  */
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Smartphone, Layers, Bot, Server, CheckCircle2 } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GlassCard from '@/components/ui/GlassCard'
@@ -141,34 +141,34 @@ export default function About() {
 
           {/* ── Left: Bio ──────────────────────────────────────── */}
           <div className="space-y-6">
-            <motion.p {...fadeUp(0)} className="text-ink-secondary text-lg leading-relaxed">
+            <m.p {...fadeUp(0)} className="text-ink-secondary text-lg leading-relaxed">
               I'm <span className="text-ink-primary font-medium">{SITE_IDENTITY.fullName}</span> — a
               Senior Flutter Developer in Bangalore with {SITE_IDENTITY.yearsExperience}+ years shipping
               production iOS and Android apps across fintech, health and e-commerce. I architect with
               Clean Architecture and Riverpod/BLoC, and own releases end-to-end — from the first PR to
               the App Store and Play Store.
-            </motion.p>
+            </m.p>
 
-            <motion.p {...fadeUp(0.1)} className="text-ink-muted leading-relaxed">
+            <m.p {...fadeUp(0.1)} className="text-ink-muted leading-relaxed">
               I built the Selfe Loans app that Equitas Small Finance Bank used to process loan
               applications across 900+ branches, led the 150+ Health app with smartwatch sync on both
               platforms, and mentor developers through code reviews. I also build at the AI layer: an
               8-agent orchestration system on the Anthropic SDK, and Cockpit — a Flutter + Supabase
               console for approving AI-agent actions from anywhere.
-            </motion.p>
+            </m.p>
 
             {/* Checklist */}
-            <motion.ul {...fadeUp(0.18)} className="space-y-2.5">
+            <m.ul {...fadeUp(0.18)} className="space-y-2.5">
               {HIGHLIGHTS.map(item => (
                 <li key={item} className="flex items-start gap-2.5 text-ink-muted text-sm">
                   <CheckCircle2 size={14} className="text-sky mt-0.5 flex-shrink-0" aria-hidden />
                   {item}
                 </li>
               ))}
-            </motion.ul>
+            </m.ul>
 
             {/* Tech pillars */}
-            <motion.div {...fadeUp(0.34)} className="grid grid-cols-2 gap-2.5">
+            <m.div {...fadeUp(0.34)} className="grid grid-cols-2 gap-2.5">
               {PILLARS.map(({ Icon, label, desc }) => (
                 <div
                   key={label}
@@ -186,20 +186,20 @@ export default function About() {
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
 
           {/* ── Right: Photo + Stats ────────────────────────── */}
           <div className="space-y-5">
-            <motion.div {...fadeUp(0.14)}>
+            <m.div {...fadeUp(0.14)}>
               <AboutPhoto />
-            </motion.div>
+            </m.div>
 
-            <motion.div {...fadeUp(0.24)} className="grid grid-cols-2 gap-3">
+            <m.div {...fadeUp(0.24)} className="grid grid-cols-2 gap-3">
               {STATS.map(stat => (
                 <StatCard key={stat.label} {...stat} />
               ))}
-            </motion.div>
+            </m.div>
           </div>
 
         </div>

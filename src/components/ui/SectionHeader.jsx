@@ -8,7 +8,7 @@
  *  title   – large headline text
  *  subtitle – optional paragraph below the title
  */
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -21,28 +21,28 @@ export default function SectionHeader({ label, title, subtitle, className = '' }
   return (
     <div className={`mb-16 ${className}`}>
       {label && (
-        <motion.p
+        <m.p
           {...fadeUp(0)}
           className="font-mono text-xs tracking-[0.2em] text-sky/70 mb-4 uppercase"
         >
           {label}
-        </motion.p>
+        </m.p>
       )}
 
-      <motion.h2
+      <m.h2
         {...fadeUp(0.08)}
         className="font-display text-4xl md:text-5xl font-bold text-ink-primary leading-[1.1]"
       >
         {title}
-      </motion.h2>
+      </m.h2>
 
       {subtitle && (
-        <motion.p
+        <m.p
           {...fadeUp(0.16)}
           className="mt-5 text-ink-muted max-w-2xl text-lg leading-relaxed"
         >
           {subtitle}
-        </motion.p>
+        </m.p>
       )}
     </div>
   )

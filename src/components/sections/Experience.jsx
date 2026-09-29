@@ -7,7 +7,7 @@
  *  - Animated connector dot pulses when the entry enters the viewport
  *  - Glass card per entry with: period, domain tag, role, description, tech badges, highlight stat
  */
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 import GlassCard from '@/components/ui/GlassCard'
 import Badge from '@/components/ui/Badge'
@@ -33,7 +33,7 @@ function ExperienceCard({ experience, index }) {
 
       {/* ── Connector dot + line ─────────────────────────────── */}
       <div className="absolute left-0 md:left-1/2 top-6 flex flex-col items-center -translate-x-1/2 z-10">
-        <motion.div
+        <m.div
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
@@ -44,7 +44,7 @@ function ExperienceCard({ experience, index }) {
       </div>
 
       {/* ── Card ─────────────────────────────────────────────── */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, x: isEven ? -32 : 32 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: '-50px' }}
@@ -87,7 +87,7 @@ function ExperienceCard({ experience, index }) {
             ))}
           </div>
         </GlassCard>
-      </motion.div>
+      </m.div>
     </div>
   )
 }

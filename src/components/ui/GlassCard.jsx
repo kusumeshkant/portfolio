@@ -9,7 +9,7 @@
  *  className – additional Tailwind classes
  */
 import { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { m, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { cn } from '@/utils/cn'
 
 export default function GlassCard({ children, glow = false, tilt = false, className }) {
@@ -40,7 +40,7 @@ export default function GlassCard({ children, glow = false, tilt = false, classN
   }
 
   return (
-    <motion.div
+    <m.div
       ref={cardRef}
       className={cn(glow ? 'glass-card-glow' : 'glass-card', className)}
       style={tilt ? { rotateX, rotateY, transformStyle: 'preserve-3d' } : {}}
@@ -48,6 +48,6 @@ export default function GlassCard({ children, glow = false, tilt = false, classN
       onMouseLeave={handleMouseLeave}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }

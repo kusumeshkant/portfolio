@@ -8,7 +8,7 @@
  * product page). There are no placeholder "Code" / "Live Demo" buttons.
  */
 import { useRef } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { m, useMotionValue, useSpring } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import Badge from '@/components/ui/Badge'
@@ -39,7 +39,7 @@ function ProjectCard({ project, featured = false, index = 0 }) {
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -53,7 +53,7 @@ function ProjectCard({ project, featured = false, index = 0 }) {
         onMouseLeave={handleMouseLeave}
       >
         {/* Cursor-tracking radial gradient — "alive" card effect */}
-        <motion.div
+        <m.div
           className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
           style={{
             background: `radial-gradient(300px circle at ${smoothX}px ${smoothY}px, ${color}12, transparent 60%)`,
@@ -131,7 +131,7 @@ function ProjectCard({ project, featured = false, index = 0 }) {
           )}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 

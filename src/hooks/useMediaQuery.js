@@ -9,9 +9,9 @@
 import { useState, useEffect } from 'react'
 
 export function useMediaQuery(query) {
-  const [matches, setMatches] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia(query).matches,
-  )
+  // Starts false so the prerendered HTML and the first client render agree;
+  // the effect below applies the real value right after hydration.
+  const [matches, setMatches] = useState(false)
 
   useEffect(() => {
     const mql = window.matchMedia(query)

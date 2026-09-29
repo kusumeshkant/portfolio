@@ -8,7 +8,7 @@
  * (Formspree / EmailJS) are listed in SITE_REVIEW.md.
  */
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { Github, Linkedin, Mail, Send, Phone, Clock, Globe } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
@@ -90,17 +90,17 @@ export default function Contact() {
           <div className="space-y-8">
 
             {/* Availability points */}
-            <motion.div {...fadeUp(0)} className="space-y-3">
+            <m.div {...fadeUp(0)} className="space-y-3">
               {AVAILABILITY_POINTS.map(({ Icon, text }) => (
                 <div key={text} className="flex items-start gap-3">
                   <Icon size={14} className="text-sky mt-0.5 flex-shrink-0" aria-hidden />
                   <p className="text-ink-muted text-sm">{text}</p>
                 </div>
               ))}
-            </motion.div>
+            </m.div>
 
             {/* Direct contact cards */}
-            <motion.div {...fadeUp(0.08)} className="grid grid-cols-1 gap-2">
+            <m.div {...fadeUp(0.08)} className="grid grid-cols-1 gap-2">
               {/* Email */}
               <a
                 href={SOCIAL_LINKS.email}
@@ -134,10 +134,10 @@ export default function Contact() {
                   <p className="text-ink-muted text-xs font-mono">{SITE_IDENTITY.phone}</p>
                 </div>
               </a>
-            </motion.div>
+            </m.div>
 
             {/* Social links */}
-            <motion.div {...fadeUp(0.16)}>
+            <m.div {...fadeUp(0.16)}>
               <p className="font-mono text-xs text-ink-muted uppercase tracking-widest mb-3">Find me on</p>
               <div className="flex flex-wrap gap-2">
                 {SOCIALS.map(({ href, Icon, label }) => (
@@ -156,11 +156,11 @@ export default function Contact() {
                   </a>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* ── Right: Form ──────────────────────────────────────── */}
-          <motion.div {...fadeUp(0.12)}>
+          <m.div {...fadeUp(0.12)}>
             <GlassCard glow className="p-7">
               {submitted ? (
                 <div className="py-10 flex flex-col items-center text-center gap-4" role="status">
@@ -242,7 +242,7 @@ export default function Contact() {
                 </form>
               )}
             </GlassCard>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

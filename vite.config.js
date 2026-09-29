@@ -12,17 +12,9 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      output: {
-        // Only framer-motion gets its own long-cached chunk. Three.js is left to
-        // Rollup: it's reachable only through lazy 3D components, so it stays out
-        // of the initial load. (A static manualChunks map for three/react pulled
-        // React into the Three.js chunk and forced a 963 kB modulepreload.)
-        manualChunks(id) {
-          if (id.includes('node_modules/framer-motion')) return 'motion-vendor'
-        },
-      },
-    },
+    // No manualChunks: Rollup's default splitting keeps Three.js (lazy 3D scenes)
+    // and Framer Motion's animation features (LazyMotion, see main.jsx) out of
+    // the initial load. A static vendor map pulled both into the critical path.
     // Increase chunk warning threshold (Three.js is large)
     chunkSizeWarningLimit: 1000,
   },

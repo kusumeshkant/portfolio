@@ -10,7 +10,7 @@
  * motion allowed; elsewhere the capabilities list takes the full width.
  */
 import { Suspense, lazy } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Layers, ShieldCheck, Bot, Users, Rocket } from 'lucide-react'
 import { useRich3D } from '@/hooks/useMediaQuery'
 
@@ -64,24 +64,24 @@ export default function Interactive3D() {
 
           {/* ── Left: Capabilities ────────────────────────────────── */}
           <div>
-            <motion.p
+            <m.p
               {...fadeUp(0)}
               className="font-mono text-xs tracking-[0.2em] text-sky/70 mb-4 uppercase"
             >
               05 / What I bring
-            </motion.p>
+            </m.p>
 
-            <motion.h2
+            <m.h2
               {...fadeUp(0.08)}
               className="font-display text-4xl md:text-5xl font-bold text-ink-primary mb-10 leading-[1.1]"
             >
               Built to ship,<br />
               <span className="gradient-text">designed to last.</span>
-            </motion.h2>
+            </m.h2>
 
             <div className="space-y-6">
               {CAPABILITIES.map(({ Icon, title, desc }, i) => (
-                <motion.div
+                <m.div
                   key={title}
                   {...fadeUp(0.15 + i * 0.1)}
                   className="flex gap-4 items-start"
@@ -100,14 +100,14 @@ export default function Interactive3D() {
                     <h3 className="font-display font-semibold text-ink-primary mb-1">{title}</h3>
                     <p className="text-ink-muted text-sm leading-relaxed">{desc}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
 
           {/* ── Right: 3D Canvas ──────────────────────────────────── */}
           {rich3D && (
-          <motion.div
+          <m.div
             aria-hidden
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -130,7 +130,7 @@ export default function Interactive3D() {
             >
               <FloatingShapes />
             </Suspense>
-          </motion.div>
+          </m.div>
           )}
         </div>
       </div>
