@@ -6,35 +6,41 @@
  *  - Left side: a "capabilities" list with animated line reveals
  *  - Horizontal rule with gradient glow separating top from bottom
  *
- * The camera in FloatingShapes shifts with the mouse → feels immersive without
- * being gimmicky. You're a senior engineer, not a gaming studio.
+ * The 3D canvas is decorative and only renders on desktop with a mouse and
+ * motion allowed; elsewhere the capabilities list takes the full width.
  */
 import { Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
-import { Layers, Cpu, Globe, Zap } from 'lucide-react'
+import { Layers, ShieldCheck, Bot, Users, Rocket } from 'lucide-react'
+import { useRich3D } from '@/hooks/useMediaQuery'
 
 const FloatingShapes = lazy(() => import('@/components/three/FloatingShapes'))
 
 const CAPABILITIES = [
   {
-    Icon: Cpu,
-    title: 'Architecture that scales',
-    desc: 'Microservices, serverless, monoliths — I design for the right complexity level.',
-  },
-  {
     Icon: Layers,
-    title: 'Full-spectrum delivery',
-    desc: 'From mobile UI to database schema, I own the whole feature end-to-end.',
+    title: 'Architecture that scales',
+    desc: 'Clean Architecture with Riverpod or BLoC — layered so teams ship features in parallel, as on Selfe Loans.',
   },
   {
-    Icon: Globe,
-    title: 'Cross-platform expertise',
-    desc: 'One codebase targeting iOS, Android, and Web with Flutter and React.',
+    Icon: ShieldCheck,
+    title: 'Secure by default',
+    desc: 'Interceptor-level request/response encryption, OAuth 2.0, HMAC-signed webhooks and row-level security in production code.',
   },
   {
-    Icon: Zap,
-    title: 'Performance obsessed',
-    desc: 'Sub-100ms responses, 60fps UI, and Lighthouse 90+ on every launch.',
+    Icon: Bot,
+    title: 'AI agents, with a human in the loop',
+    desc: 'Multi-agent systems on Claude, plus the approval console, audit trail and per-call tracing that make them safe to run.',
+  },
+  {
+    Icon: Users,
+    title: 'Leads and mentors',
+    desc: 'Mentored developers on Clean Architecture and state management, and ran code reviews across the mobile codebase.',
+  },
+  {
+    Icon: Rocket,
+    title: 'Ships end-to-end',
+    desc: 'From Flutter UI to Node.js and Supabase backends, through to the App Store and Play Store release.',
   },
 ]
 
@@ -46,13 +52,15 @@ const fadeUp = (delay = 0) => ({
 })
 
 export default function Interactive3D() {
+  const rich3D = useRich3D()
+
   return (
     <section className="relative py-section overflow-hidden">
       {/* Top divider glow */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-sky/20 to-transparent" />
 
       <div className="section-container">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className={`grid gap-8 items-center ${rich3D ? 'md:grid-cols-2' : ''}`}>
 
           {/* ── Left: Capabilities ────────────────────────────────── */}
           <div>
@@ -81,7 +89,7 @@ export default function Interactive3D() {
                   {/* Line accent */}
                   <div className="flex flex-col items-center gap-1 pt-1 flex-shrink-0">
                     <div className="p-2 rounded-lg bg-sky/10 border border-sky/15">
-                      <Icon size={14} className="text-sky" />
+                      <Icon size={14} className="text-sky" aria-hidden />
                     </div>
                     {i < CAPABILITIES.length - 1 && (
                       <div className="w-px h-8 bg-gradient-to-b from-sky/20 to-transparent" />
@@ -98,7 +106,9 @@ export default function Interactive3D() {
           </div>
 
           {/* ── Right: 3D Canvas ──────────────────────────────────── */}
+          {rich3D && (
           <motion.div
+            aria-hidden
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -111,13 +121,6 @@ export default function Interactive3D() {
             <div className="absolute bottom-3 left-3 w-5 h-5 border-l border-b border-sky/30 z-10" />
             <div className="absolute bottom-3 right-3 w-5 h-5 border-r border-b border-sky/30 z-10" />
 
-            {/* Mono label */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-              <span className="font-mono text-[9px] text-sky/40 tracking-widest uppercase">
-                interactive · move mouse
-              </span>
-            </div>
-
             <Suspense
               fallback={
                 <div className="h-full flex items-center justify-center text-ink-muted font-mono text-xs">
@@ -128,6 +131,7 @@ export default function Interactive3D() {
               <FloatingShapes />
             </Suspense>
           </motion.div>
+          )}
         </div>
       </div>
     </section>
